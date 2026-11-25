@@ -1,0 +1,177 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="robots" content="noindex">
+<title>Keyword cannibalization: sample-export.csv</title>
+<style>
+:root { --bg:#f6f7f9; --panel:#ffffff; --fg:#17202b; --mute:#5b6675; --line:#e2e6eb; --accent:#0f766e; --chip:#eef1f4; --bad:#b42318; --warn:#9a5b00; --good:#1f7a4c; --bar:#cfd6de;
+  --font:system-ui,-apple-system,"Segoe UI",Roboto,"Helvetica Neue",Arial,sans-serif; --mono:ui-monospace,SFMono-Regular,Menlo,Consolas,monospace; color-scheme:light }
+@media (prefers-color-scheme: dark) { :root { --bg:#0f1318; --panel:#161b22; --fg:#e6ebf1; --mute:#9aa5b4; --line:#272f39; --accent:#2cc9b4; --chip:#1f2630; --bad:#f97066; --warn:#f2b54a; --good:#4ade80; --bar:#33404d; color-scheme:dark } }
+* { box-sizing:border-box }
+body { margin:0; background:var(--bg); color:var(--fg); font:15px/1.5 var(--font) }
+.wrap { max-width:1120px; margin:0 auto; padding:28px 16px 64px }
+h1 { font-size:26px; line-height:1.2; margin:0 0 6px; letter-spacing:-.01em }
+.sub { color:var(--mute); margin:0 0 22px; overflow-wrap:anywhere }
+.tiles { display:grid; grid-template-columns:repeat(auto-fit,minmax(150px,1fr)); gap:10px; margin-bottom:16px }
+.tile { background:var(--panel); border:1px solid var(--line); border-radius:10px; padding:14px 16px }
+.tile b { display:block; font-size:26px; line-height:1.1; font-variant-numeric:tabular-nums }
+.tile span { color:var(--mute); font-size:13px }
+.box { background:var(--panel); border:1px solid var(--line); border-left:3px solid var(--accent); border-radius:10px; padding:14px 16px; margin-bottom:18px }
+.box p { margin:0 0 6px } .box p:last-child { margin:0 }
+.box ul { margin:6px 0 0; padding-left:20px; color:var(--mute) }
+.tabs { display:flex; gap:6px; flex-wrap:wrap; margin:22px 0 12px; border-bottom:1px solid var(--line) }
+.tabs button { font:inherit; font-weight:600; color:var(--mute); background:none; border:0; border-bottom:2px solid transparent; padding:10px 12px; cursor:pointer }
+.tabs button[aria-selected="true"] { color:var(--fg); border-bottom-color:var(--accent) }
+.tools { display:flex; gap:8px; flex-wrap:wrap; margin-bottom:12px }
+.tools input, .tools select { font:inherit; color:var(--fg); background:var(--panel); border:1px solid var(--line); border-radius:8px; padding:8px 10px; min-width:0 }
+.tools input { flex:1 1 220px }
+.count { color:var(--mute); font-size:13px; margin:0 0 10px }
+.card { background:var(--panel); border:1px solid var(--line); border-radius:10px; padding:14px 16px; margin-bottom:10px }
+.head { display:flex; gap:8px 12px; flex-wrap:wrap; align-items:baseline; margin-bottom:8px }
+.head strong { font-size:16px; overflow-wrap:anywhere }
+.meta { color:var(--mute); font-size:13px; font-variant-numeric:tabular-nums }
+.sev { font-size:12px; font-weight:700; text-transform:uppercase; letter-spacing:.04em; padding:2px 8px; border-radius:99px; background:var(--chip) }
+.sev.high { color:var(--bad) } .sev.medium { color:var(--warn) } .sev.low { color:var(--mute) }
+.row { display:grid; grid-template-columns:84px minmax(0,1fr) auto; gap:4px 12px; align-items:center; padding:7px 0; border-top:1px solid var(--line) }
+.tag { font-size:12px; font-weight:700; color:var(--mute) }
+.tag.keep { color:var(--good) }
+.url { font:13px/1.4 var(--mono); overflow-wrap:anywhere }
+.url a { color:inherit; text-decoration:none } .url a:hover { text-decoration:underline }
+.nums { color:var(--mute); font-size:13px; font-variant-numeric:tabular-nums; text-align:right; white-space:nowrap }
+.bar { grid-column:2 / 4; height:5px; background:var(--chip); border-radius:99px; overflow:hidden }
+.bar i { display:block; height:100%; background:var(--bar) } .bar i.first { background:var(--accent) }
+.step { margin:10px 0 0 } .step b { color:var(--accent) }
+.note { margin:10px 0 0; color:var(--mute); font-size:13px }
+.chips { display:flex; gap:6px; flex-wrap:wrap; margin-top:10px }
+.chips span { background:var(--chip); border-radius:99px; padding:2px 10px; font-size:13px; overflow-wrap:anywhere }
+.more { font:inherit; font-weight:600; color:var(--accent); background:var(--panel); border:1px solid var(--line); border-radius:8px; padding:9px 14px; cursor:pointer }
+.empty { color:var(--mute); padding:24px 0 }
+footer { color:var(--mute); font-size:13px; margin-top:28px; overflow-wrap:anywhere }
+[hidden] { display:none !important }
+@media (max-width:600px) { .row { grid-template-columns:minmax(0,1fr) } .nums { text-align:left; white-space:normal } .bar { grid-column:1 } }
+</style>
+</head>
+<body>
+<div class="wrap">
+  <h1>Keyword cannibalization candidates</h1>
+  <p class="sub" id="sub"></p>
+  <div class="tiles" id="tiles"></div>
+  <div class="box">
+    <p><strong>These are candidates, not verdicts.</strong> The export shows that two pages got impressions for the same query. It cannot show why.</p>
+    <ul>
+      <li>Two of your pages listed on the same results page is a double listing, not a problem.</li>
+      <li>Search intent is not in the data. A guide and a product page can both deserve to rank.</li>
+      <li>Language folders and brand searches produce false hits. Filter them out when you run the script.</li>
+    </ul>
+  </div>
+  <div class="tabs" role="tablist">
+    <button role="tab" id="tab-pairs" aria-selected="true">Page pairs</button>
+    <button role="tab" id="tab-queries" aria-selected="false">Queries</button>
+  </div>
+  <div class="tools">
+    <input id="search" type="search" placeholder="Filter by query or URL" aria-label="Filter by query or URL">
+    <select id="sev" aria-label="Severity">
+      <option value="">All severities</option><option value="high">High</option><option value="medium">Medium</option><option value="low">Low</option>
+    </select>
+  </div>
+  <p class="count" id="count"></p>
+  <div id="list"></div>
+  <button class="more" id="more" hidden>Show more</button>
+  <footer id="foot"></footer>
+</div>
+<script id="data" type="application/json">{"source":"sample-export.csv","generated":"2026-11-25","summary":{"queries_checked":50,"candidates":21,"high":5,"medium":13,"low":3,"pairs":7,"clicks":1207,"impressions":28465,"brand_queries_skipped":3,"filtered_rows":1},"stats":{"rows":101,"blank_query":2,"bad_rows":0,"has_position":true},"settings":{"min_impressions":50,"min_page_impressions":10,"min_share":0.1,"high":0.3,"medium":0.15,"click_basis":10,"same_topic_queries":3,"same_topic_overlap":0.5},"brand":"leafmoor","queries":[{"query":"how often to repot monstera","severity":"high","basis":"clicks","second_share":0.358,"clicks":81,"impressions":2156,"other_impressions":855,"pages":[{"url":"https://www.example.com/guides/repotting-monstera/","key":"//www.example.com/guides/repotting-monstera","clicks":52,"impressions":1301,"position":6.9,"share":0.642},{"url":"https://www.example.com/blog/how-to-repot-a-monstera/","key":"//www.example.com/blog/how-to-repot-a-monstera","clicks":29,"impressions":855,"position":12.2,"share":0.358}],"note":""},{"query":"how to repot a monstera","severity":"high","basis":"clicks","second_share":0.3784,"clicks":74,"impressions":1836,"other_impressions":805,"pages":[{"url":"https://www.example.com/guides/repotting-monstera/","key":"//www.example.com/guides/repotting-monstera","clicks":46,"impressions":1031,"position":6.4,"share":0.6216},{"url":"https://www.example.com/blog/how-to-repot-a-monstera/","key":"//www.example.com/blog/how-to-repot-a-monstera","clicks":28,"impressions":805,"position":12.3,"share":0.3784}],"note":""},{"query":"repotting monstera","severity":"high","basis":"clicks","second_share":0.3529,"clicks":17,"impressions":537,"other_impressions":262,"pages":[{"url":"https://www.example.com/guides/repotting-monstera/","key":"//www.example.com/guides/repotting-monstera","clicks":11,"impressions":275,"position":6.7,"share":0.6471},{"url":"https://www.example.com/blog/how-to-repot-a-monstera/","key":"//www.example.com/blog/how-to-repot-a-monstera","clicks":6,"impressions":262,"position":12.7,"share":0.3529}],"note":""},{"query":"low light plants","severity":"high","basis":"clicks","second_share":0.3448,"clicks":29,"impressions":783,"other_impressions":259,"pages":[{"url":"https://www.example.com/collections/low-light-plants/","key":"//www.example.com/collections/low-light-plants","clicks":19,"impressions":524,"position":4.7,"share":0.6552},{"url":"https://www.example.com/blog/best-low-light-plants/","key":"//www.example.com/blog/best-low-light-plants","clicks":10,"impressions":259,"position":7.8,"share":0.3448}],"note":"Both pages average in the top 10. That can be a double listing, which is fine. Check the live results before you change anything."},{"query":"monstera root bound signs","severity":"high","basis":"clicks","second_share":0.3478,"clicks":23,"impressions":544,"other_impressions":239,"pages":[{"url":"https://www.example.com/guides/repotting-monstera/","key":"//www.example.com/guides/repotting-monstera","clicks":15,"impressions":305,"position":7.6,"share":0.6522},{"url":"https://www.example.com/blog/how-to-repot-a-monstera/","key":"//www.example.com/blog/how-to-repot-a-monstera","clicks":8,"impressions":239,"position":13.4,"share":0.3478}],"note":""},{"query":"low light indoor plants","severity":"medium","basis":"clicks","second_share":0.2885,"clicks":104,"impressions":2334,"other_impressions":794,"pages":[{"url":"https://www.example.com/collections/low-light-plants/","key":"//www.example.com/collections/low-light-plants","clicks":74,"impressions":1540,"position":5.7,"share":0.7115},{"url":"https://www.example.com/blog/best-low-light-plants/","key":"//www.example.com/blog/best-low-light-plants","clicks":30,"impressions":794,"position":7.9,"share":0.2885}],"note":"Both pages average in the top 10. That can be a double listing, which is fine. Check the live results before you change anything."},{"query":"pothos vs philodendron","severity":"medium","basis":"clicks","second_share":0.2184,"clicks":87,"impressions":2510,"other_impressions":786,"pages":[{"url":"https://www.example.com/blog/pothos-vs-philodendron/","key":"//www.example.com/blog/pothos-vs-philodendron","clicks":68,"impressions":1724,"position":2.3,"share":0.7816},{"url":"https://www.example.com/blog/pothos-care/","key":"//www.example.com/blog/pothos-care","clicks":19,"impressions":786,"position":5.2,"share":0.2184}],"note":"Both pages average in the top 10. That can be a double listing, which is fine. Check the live results before you change anything."},{"query":"when to repot monstera","severity":"medium","basis":"clicks","second_share":0.2222,"clicks":90,"impressions":2038,"other_impressions":705,"pages":[{"url":"https://www.example.com/guides/repotting-monstera/","key":"//www.example.com/guides/repotting-monstera","clicks":70,"impressions":1333,"position":8.4,"share":0.7778},{"url":"https://www.example.com/blog/how-to-repot-a-monstera/","key":"//www.example.com/blog/how-to-repot-a-monstera","clicks":20,"impressions":705,"position":13.7,"share":0.2222}],"note":""},{"query":"repotting large monstera","severity":"medium","basis":"clicks","second_share":0.1739,"clicks":69,"impressions":1529,"other_impressions":648,"pages":[{"url":"https://www.example.com/guides/repotting-monstera/","key":"//www.example.com/guides/repotting-monstera","clicks":57,"impressions":881,"position":8.0,"share":0.8261},{"url":"https://www.example.com/blog/how-to-repot-a-monstera/","key":"//www.example.com/blog/how-to-repot-a-monstera","clicks":12,"impressions":648,"position":14.9,"share":0.1739}],"note":""},{"query":"best soil for repotting monstera","severity":"medium","basis":"clicks","second_share":0.2581,"clicks":62,"impressions":1486,"other_impressions":603,"pages":[{"url":"https://www.example.com/guides/repotting-monstera/","key":"//www.example.com/guides/repotting-monstera","clicks":46,"impressions":883,"position":7.6,"share":0.7419},{"url":"https://www.example.com/blog/how-to-repot-a-monstera/","key":"//www.example.com/blog/how-to-repot-a-monstera","clicks":16,"impressions":603,"position":14.0,"share":0.2581}],"note":""},{"query":"low light houseplants","severity":"medium","basis":"clicks","second_share":0.2439,"clicks":82,"impressions":1465,"other_impressions":525,"pages":[{"url":"https://www.example.com/collections/low-light-plants/","key":"//www.example.com/collections/low-light-plants","clicks":62,"impressions":940,"position":4.7,"share":0.7561},{"url":"https://www.example.com/blog/best-low-light-plants/","key":"//www.example.com/blog/best-low-light-plants","clicks":20,"impressions":525,"position":7.6,"share":0.2439}],"note":"Both pages average in the top 10. That can be a double listing, which is fine. Check the live results before you change anything."},{"query":"how often to water snake plant","severity":"medium","basis":"clicks","second_share":0.1589,"clicks":107,"impressions":2333,"other_impressions":465,"pages":[{"url":"https://www.example.com/blog/snake-plant-watering/","key":"//www.example.com/blog/snake-plant-watering","clicks":90,"impressions":1868,"position":4.6,"share":0.8411},{"url":"https://www.example.com/blog/snake-plant-care/","key":"//www.example.com/blog/snake-plant-care","clicks":17,"impressions":465,"position":12.0,"share":0.1589}],"note":""},{"query":"fiddle leaf fig dropping leaves","severity":"medium","basis":"clicks","second_share":0.234,"clicks":47,"impressions":1376,"other_impressions":376,"pages":[{"url":"https://www.example.com/blog/fiddle-leaf-fig-problems/","key":"//www.example.com/blog/fiddle-leaf-fig-problems","clicks":36,"impressions":1000,"position":7.1,"share":0.766},{"url":"https://www.example.com/blog/fiddle-leaf-fig-care/","key":"//www.example.com/blog/fiddle-leaf-fig-care","clicks":11,"impressions":376,"position":12.5,"share":0.234}],"note":""},{"query":"snake plant watering","severity":"medium","basis":"clicks","second_share":0.2812,"clicks":32,"impressions":919,"other_impressions":326,"pages":[{"url":"https://www.example.com/blog/snake-plant-watering/","key":"//www.example.com/blog/snake-plant-watering","clicks":23,"impressions":593,"position":4.1,"share":0.7188},{"url":"https://www.example.com/blog/snake-plant-care/","key":"//www.example.com/blog/snake-plant-care","clicks":9,"impressions":326,"position":10.0,"share":0.2812}],"note":"Both pages average in the top 10. That can be a double listing, which is fine. Check the live results before you change anything."},{"query":"repot monstera deliciosa","severity":"medium","basis":"clicks","second_share":0.2581,"clicks":31,"impressions":722,"other_impressions":313,"pages":[{"url":"https://www.example.com/guides/repotting-monstera/","key":"//www.example.com/guides/repotting-monstera","clicks":23,"impressions":409,"position":7.2,"share":0.7419},{"url":"https://www.example.com/blog/how-to-repot-a-monstera/","key":"//www.example.com/blog/how-to-repot-a-monstera","clicks":8,"impressions":313,"position":12.2,"share":0.2581}],"note":""},{"query":"monstera repotting guide","severity":"medium","basis":"clicks","second_share":0.1765,"clicks":17,"impressions":553,"other_impressions":239,"pages":[{"url":"https://www.example.com/guides/repotting-monstera/","key":"//www.example.com/guides/repotting-monstera","clicks":14,"impressions":314,"position":8.5,"share":0.8235},{"url":"https://www.example.com/blog/how-to-repot-a-monstera/","key":"//www.example.com/blog/how-to-repot-a-monstera","clicks":3,"impressions":239,"position":14.6,"share":0.1765}],"note":""},{"query":"best low light plants","severity":"medium","basis":"clicks","second_share":0.16,"clicks":25,"impressions":617,"other_impressions":225,"pages":[{"url":"https://www.example.com/collections/low-light-plants/","key":"//www.example.com/collections/low-light-plants","clicks":21,"impressions":392,"position":5.8,"share":0.84},{"url":"https://www.example.com/blog/best-low-light-plants/","key":"//www.example.com/blog/best-low-light-plants","clicks":4,"impressions":225,"position":8.6,"share":0.16}],"note":"Both pages average in the top 10. That can be a double listing, which is fine. Check the live results before you change anything."},{"query":"plants for dark rooms","severity":"medium","basis":"clicks","second_share":0.2,"clicks":30,"impressions":566,"other_impressions":153,"pages":[{"url":"https://www.example.com/collections/low-light-plants/","key":"//www.example.com/collections/low-light-plants","clicks":24,"impressions":413,"position":5.3,"share":0.8},{"url":"https://www.example.com/blog/best-low-light-plants/","key":"//www.example.com/blog/best-low-light-plants","clicks":6,"impressions":153,"position":9.0,"share":0.2}],"note":"Both pages average in the top 10. That can be a double listing, which is fine. Check the live results before you change anything."},{"query":"snake plant overwatering","severity":"low","basis":"clicks","second_share":0.0976,"clicks":82,"impressions":1440,"other_impressions":374,"pages":[{"url":"https://www.example.com/blog/snake-plant-watering/","key":"//www.example.com/blog/snake-plant-watering","clicks":74,"impressions":1066,"position":4.9,"share":0.9024},{"url":"https://www.example.com/blog/snake-plant-care/","key":"//www.example.com/blog/snake-plant-care","clicks":8,"impressions":374,"position":10.2,"share":0.0976}],"note":""},{"query":"terracotta vs plastic pots","severity":"low","basis":"clicks","second_share":0.0875,"clicks":80,"impressions":1907,"other_impressions":310,"pages":[{"url":"https://www.example.com/blog/terracotta-vs-plastic-pots/","key":"//www.example.com/blog/terracotta-vs-plastic-pots","clicks":73,"impressions":1597,"position":6.0,"share":0.9125},{"url":"https://www.example.com/collections/terracotta-pots/","key":"//www.example.com/collections/terracotta-pots","clicks":7,"impressions":310,"position":11.1,"share":0.0875}],"note":""},{"query":"calathea curling leaves","severity":"low","basis":"clicks","second_share":0.0789,"clicks":38,"impressions":814,"other_impressions":113,"pages":[{"url":"https://www.example.com/blog/calathea-care/","key":"//www.example.com/blog/calathea-care","clicks":35,"impressions":701,"position":5.7,"share":0.9211},{"url":"https://www.example.com/blog/why-are-my-plant-leaves-curling/","key":"//www.example.com/blog/why-are-my-plant-leaves-curling","clicks":3,"impressions":113,"position":12.7,"share":0.0789}],"note":""}],"pairs":[{"strong":{"url":"https://www.example.com/guides/repotting-monstera/","clicks":334,"impressions":6732,"position":7.5},"weak":{"url":"https://www.example.com/blog/how-to-repot-a-monstera/","clicks":130,"impressions":4669,"position":13.3},"shared_queries":9,"shared_impressions":11401,"shared_clicks":464,"weak_overlap":1.0,"kind":"Same topic","next_step":"Most of the weaker page's visibility is on queries the stronger page already covers. If both answer the same question, merge the weaker page into the stronger one and 301 redirect it.","severity":"high","top_queries":["how often to repot monstera","when to repot monstera","how to repot a monstera","repotting large monstera","best soil for repotting monstera","repot monstera deliciosa","monstera repotting guide","monstera root bound signs"]},{"strong":{"url":"https://www.example.com/collections/low-light-plants/","clicks":200,"impressions":3809,"position":5.3},"weak":{"url":"https://www.example.com/blog/best-low-light-plants/","clicks":70,"impressions":1956,"position":8.0},"shared_queries":5,"shared_impressions":5765,"shared_clicks":270,"weak_overlap":0.2136,"kind":"Partly overlapping","next_step":"Keep both. Give each page its own main query in the title and H1, and link from the weaker page to the stronger one using the shared query as anchor text.","severity":"high","top_queries":["low light indoor plants","low light houseplants","low light plants","best low light plants","plants for dark rooms"]},{"strong":{"url":"https://www.example.com/blog/snake-plant-watering/","clicks":187,"impressions":3527,"position":4.6},"weak":{"url":"https://www.example.com/blog/snake-plant-care/","clicks":34,"impressions":1165,"position":10.9},"shared_queries":3,"shared_impressions":4692,"shared_clicks":221,"weak_overlap":0.1322,"kind":"Partly overlapping","next_step":"Keep both. Give each page its own main query in the title and H1, and link from the weaker page to the stronger one using the shared query as anchor text.","severity":"medium","top_queries":["how often to water snake plant","snake plant overwatering","snake plant watering"]},{"strong":{"url":"https://www.example.com/blog/pothos-vs-philodendron/","clicks":68,"impressions":1724,"position":2.3},"weak":{"url":"https://www.example.com/blog/pothos-care/","clicks":19,"impressions":786,"position":5.2},"shared_queries":1,"shared_impressions":2510,"shared_clicks":87,"weak_overlap":0.096,"kind":"One-off overlap","next_step":"A link from the weaker page to the stronger one, with the query as anchor text, is usually enough.","severity":"medium","top_queries":["pothos vs philodendron"]},{"strong":{"url":"https://www.example.com/blog/terracotta-vs-plastic-pots/","clicks":73,"impressions":1597,"position":6.0},"weak":{"url":"https://www.example.com/collections/terracotta-pots/","clicks":7,"impressions":310,"position":11.1},"shared_queries":1,"shared_impressions":1907,"shared_clicks":80,"weak_overlap":1.0,"kind":"One-off overlap","next_step":"A link from the weaker page to the stronger one, with the query as anchor text, is usually enough.","severity":"low","top_queries":["terracotta vs plastic pots"]},{"strong":{"url":"https://www.example.com/blog/fiddle-leaf-fig-problems/","clicks":36,"impressions":1000,"position":7.1},"weak":{"url":"https://www.example.com/blog/fiddle-leaf-fig-care/","clicks":11,"impressions":376,"position":12.5},"shared_queries":1,"shared_impressions":1376,"shared_clicks":47,"weak_overlap":1.0,"kind":"One-off overlap","next_step":"A link from the weaker page to the stronger one, with the query as anchor text, is usually enough.","severity":"medium","top_queries":["fiddle leaf fig dropping leaves"]},{"strong":{"url":"https://www.example.com/blog/calathea-care/","clicks":35,"impressions":701,"position":5.7},"weak":{"url":"https://www.example.com/blog/why-are-my-plant-leaves-curling/","clicks":3,"impressions":113,"position":12.7},"shared_queries":1,"shared_impressions":814,"shared_clicks":38,"weak_overlap":1.0,"kind":"One-off overlap","next_step":"A link from the weaker page to the stronger one, with the query as anchor text, is usually enough.","severity":"low","top_queries":["calathea curling leaves"]}],"queries_total":21,"pairs_total":7}</script>
+<script>
+(function () {
+  var D = JSON.parse(document.getElementById('data').textContent);
+  var S = D.summary, tab = 'pairs', shown = 50;
+  function el(tag, cls, text) { var e = document.createElement(tag); if (cls) e.className = cls; if (text != null) e.textContent = text; return e; }
+  function n(x) { return Number(x).toLocaleString('en-US'); }
+  function pct(x) { return Math.round(x * 100) + '%'; }
+  function pos(x) { return x == null ? '' : ' · avg position ' + x.toFixed(1); }
+  function link(u) {
+    var s = el('span', 'url');
+    if (/^https?:\/\//i.test(u)) { var a = el('a', null, u); a.href = u; a.rel = 'noopener noreferrer'; a.target = '_blank'; s.appendChild(a); }
+    else s.textContent = u;
+    return s;
+  }
+  document.getElementById('sub').textContent = D.source + ' · generated ' + D.generated;
+  [[S.queries_checked, 'queries checked'], [S.candidates, 'candidate queries'], [S.high, 'high severity'],
+   [S.pairs, 'page pairs'], [S.clicks, 'clicks on candidate queries']].forEach(function (t) {
+    var d = el('div', 'tile'); d.appendChild(el('b', null, n(t[0]))); d.appendChild(el('span', null, t[1]));
+    document.getElementById('tiles').appendChild(d);
+  });
+  function pageRow(tagText, tagCls, p, share, first) {
+    var r = el('div', 'row');
+    r.appendChild(el('span', 'tag ' + (tagCls || ''), tagText));
+    r.appendChild(link(p.url));
+    r.appendChild(el('span', 'nums', n(p.clicks) + ' clicks · ' + n(p.impressions) + ' impr.' + pos(p.position)));
+    if (share != null) { var b = el('div', 'bar'), i = el('i', first ? 'first' : ''); i.style.width = Math.max(2, Math.round(share * 100)) + '%'; b.appendChild(i); r.appendChild(b); }
+    return r;
+  }
+  function pairCard(p) {
+    var c = el('div', 'card'), h = el('div', 'head');
+    h.appendChild(el('strong', null, p.kind));
+    h.appendChild(el('span', 'sev ' + p.severity, p.severity));
+    h.appendChild(el('span', 'meta', n(p.shared_queries) + (p.shared_queries === 1 ? ' shared query' : ' shared queries') + ' · ' + n(p.shared_impressions) + ' impressions · ' + n(p.shared_clicks) + ' clicks'));
+    c.appendChild(h);
+    c.appendChild(pageRow('Stronger', 'keep', p.strong));
+    c.appendChild(pageRow('Weaker', '', p.weak));
+    c.appendChild(el('p', 'note', pct(p.weak_overlap) + " of the weaker page's impressions in this export are on these shared queries."));
+    var s = el('p', 'step'); s.appendChild(el('b', null, 'Suggested next step: ')); s.appendChild(document.createTextNode(p.next_step)); c.appendChild(s);
+    var ch = el('div', 'chips'); p.top_queries.forEach(function (q) { ch.appendChild(el('span', null, q)); }); c.appendChild(ch);
+    return c;
+  }
+  function queryCard(q) {
+    var c = el('div', 'card'), h = el('div', 'head');
+    h.appendChild(el('strong', null, q.query));
+    h.appendChild(el('span', 'sev ' + q.severity, q.severity));
+    h.appendChild(el('span', 'meta', n(q.impressions) + ' impressions · ' + n(q.clicks) + ' clicks · second page takes ' + pct(q.second_share) + ' of ' + q.basis));
+    c.appendChild(h);
+    q.pages.forEach(function (p, i) { c.appendChild(pageRow(pct(p.share), i === 0 ? 'keep' : '', p, p.share, i === 0)); });
+    if (q.note) c.appendChild(el('p', 'note', q.note));
+    return c;
+  }
+  function hay(x) {
+    return tab === 'pairs' ? (x.strong.url + ' ' + x.weak.url + ' ' + x.top_queries.join(' ')).toLowerCase()
+      : (x.query + ' ' + x.pages.map(function (p) { return p.url; }).join(' ')).toLowerCase();
+  }
+  function render() {
+    var term = document.getElementById('search').value.trim().toLowerCase(), sev = document.getElementById('sev').value;
+    var all = tab === 'pairs' ? D.pairs : D.queries, total = tab === 'pairs' ? D.pairs_total : D.queries_total;
+    var rows = all.filter(function (x) { return (!sev || x.severity === sev) && (!term || hay(x).indexOf(term) !== -1); });
+    var list = document.getElementById('list'); list.textContent = '';
+    rows.slice(0, shown).forEach(function (x) { list.appendChild(tab === 'pairs' ? pairCard(x) : queryCard(x)); });
+    if (!rows.length) list.appendChild(el('p', 'empty', !total ? 'No candidates found with the current settings.' : total > all.length ? 'Nothing matches in the rows this page holds. Filter the CSV files to search all of them.' : 'Nothing matches this filter.'));
+    var label = tab === 'pairs' ? 'page pairs' : 'queries';
+    var txt = 'Showing ' + n(Math.min(shown, rows.length)) + ' of ' + n(rows.length) + ' ' + label + '.';
+    if (total > all.length) txt += ' This page holds the first ' + n(all.length) + ' of ' + n(total) + '. The CSV files have all of them.';
+    document.getElementById('count').textContent = txt;
+    document.getElementById('more').hidden = rows.length <= shown;
+  }
+  function pick(t) {
+    tab = t; shown = 50;
+    document.getElementById('tab-pairs').setAttribute('aria-selected', t === 'pairs');
+    document.getElementById('tab-queries').setAttribute('aria-selected', t === 'queries');
+    render();
+  }
+  document.getElementById('tab-pairs').onclick = function () { pick('pairs'); };
+  document.getElementById('tab-queries').onclick = function () { pick('queries'); };
+  document.getElementById('search').oninput = function () { shown = 50; render(); };
+  document.getElementById('sev').onchange = function () { shown = 50; render(); };
+  document.getElementById('more').onclick = function () { shown += 50; render(); };
+  var st = D.settings, f = [];
+  f.push(n(D.stats.rows) + ' rows read');
+  if (D.stats.blank_query) f.push(n(D.stats.blank_query) + ' rows with a hidden query, counted in page totals only');
+  if (D.stats.bad_rows) f.push(n(D.stats.bad_rows) + ' incomplete rows skipped');
+  if (S.filtered_rows) f.push(n(S.filtered_rows) + ' rows removed by the page filter');
+  if (S.brand_queries_skipped) f.push(n(S.brand_queries_skipped) + ' brand queries skipped');
+  if (!D.stats.has_position) f.push('no position column in the file');
+  f.push('settings: query needs ' + n(st.min_impressions) + '+ impressions, a page needs ' + n(st.min_page_impressions) + '+ impressions and ' + pct(st.min_share) + '+ of the query, high from ' + pct(st.high) + ', medium from ' + pct(st.medium));
+  document.getElementById('foot').textContent = f.join(' · ') + '.';
+  render();
+})();
+</script>
+</body>
+</html>

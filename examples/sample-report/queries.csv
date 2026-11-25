@@ -1,0 +1,43 @@
+query,severity,query_clicks,query_impressions,rank_in_query,page,page_clicks,page_impressions,page_avg_position,share,share_of,note
+how often to repot monstera,high,81,2156,1,https://www.example.com/guides/repotting-monstera/,52,1301,6.9,64.2,clicks,
+how often to repot monstera,high,81,2156,2,https://www.example.com/blog/how-to-repot-a-monstera/,29,855,12.2,35.8,clicks,
+how to repot a monstera,high,74,1836,1,https://www.example.com/guides/repotting-monstera/,46,1031,6.4,62.2,clicks,
+how to repot a monstera,high,74,1836,2,https://www.example.com/blog/how-to-repot-a-monstera/,28,805,12.3,37.8,clicks,
+repotting monstera,high,17,537,1,https://www.example.com/guides/repotting-monstera/,11,275,6.7,64.7,clicks,
+repotting monstera,high,17,537,2,https://www.example.com/blog/how-to-repot-a-monstera/,6,262,12.7,35.3,clicks,
+low light plants,high,29,783,1,https://www.example.com/collections/low-light-plants/,19,524,4.7,65.5,clicks,"Both pages average in the top 10. That can be a double listing, which is fine. Check the live results before you change anything."
+low light plants,high,29,783,2,https://www.example.com/blog/best-low-light-plants/,10,259,7.8,34.5,clicks,"Both pages average in the top 10. That can be a double listing, which is fine. Check the live results before you change anything."
+monstera root bound signs,high,23,544,1,https://www.example.com/guides/repotting-monstera/,15,305,7.6,65.2,clicks,
+monstera root bound signs,high,23,544,2,https://www.example.com/blog/how-to-repot-a-monstera/,8,239,13.4,34.8,clicks,
+low light indoor plants,medium,104,2334,1,https://www.example.com/collections/low-light-plants/,74,1540,5.7,71.2,clicks,"Both pages average in the top 10. That can be a double listing, which is fine. Check the live results before you change anything."
+low light indoor plants,medium,104,2334,2,https://www.example.com/blog/best-low-light-plants/,30,794,7.9,28.8,clicks,"Both pages average in the top 10. That can be a double listing, which is fine. Check the live results before you change anything."
+pothos vs philodendron,medium,87,2510,1,https://www.example.com/blog/pothos-vs-philodendron/,68,1724,2.3,78.2,clicks,"Both pages average in the top 10. That can be a double listing, which is fine. Check the live results before you change anything."
+pothos vs philodendron,medium,87,2510,2,https://www.example.com/blog/pothos-care/,19,786,5.2,21.8,clicks,"Both pages average in the top 10. That can be a double listing, which is fine. Check the live results before you change anything."
+when to repot monstera,medium,90,2038,1,https://www.example.com/guides/repotting-monstera/,70,1333,8.4,77.8,clicks,
+when to repot monstera,medium,90,2038,2,https://www.example.com/blog/how-to-repot-a-monstera/,20,705,13.7,22.2,clicks,
+repotting large monstera,medium,69,1529,1,https://www.example.com/guides/repotting-monstera/,57,881,8.0,82.6,clicks,
+repotting large monstera,medium,69,1529,2,https://www.example.com/blog/how-to-repot-a-monstera/,12,648,14.9,17.4,clicks,
+best soil for repotting monstera,medium,62,1486,1,https://www.example.com/guides/repotting-monstera/,46,883,7.6,74.2,clicks,
+best soil for repotting monstera,medium,62,1486,2,https://www.example.com/blog/how-to-repot-a-monstera/,16,603,14.0,25.8,clicks,
+low light houseplants,medium,82,1465,1,https://www.example.com/collections/low-light-plants/,62,940,4.7,75.6,clicks,"Both pages average in the top 10. That can be a double listing, which is fine. Check the live results before you change anything."
+low light houseplants,medium,82,1465,2,https://www.example.com/blog/best-low-light-plants/,20,525,7.6,24.4,clicks,"Both pages average in the top 10. That can be a double listing, which is fine. Check the live results before you change anything."
+how often to water snake plant,medium,107,2333,1,https://www.example.com/blog/snake-plant-watering/,90,1868,4.6,84.1,clicks,
+how often to water snake plant,medium,107,2333,2,https://www.example.com/blog/snake-plant-care/,17,465,12.0,15.9,clicks,
+fiddle leaf fig dropping leaves,medium,47,1376,1,https://www.example.com/blog/fiddle-leaf-fig-problems/,36,1000,7.1,76.6,clicks,
+fiddle leaf fig dropping leaves,medium,47,1376,2,https://www.example.com/blog/fiddle-leaf-fig-care/,11,376,12.5,23.4,clicks,
+snake plant watering,medium,32,919,1,https://www.example.com/blog/snake-plant-watering/,23,593,4.1,71.9,clicks,"Both pages average in the top 10. That can be a double listing, which is fine. Check the live results before you change anything."
+snake plant watering,medium,32,919,2,https://www.example.com/blog/snake-plant-care/,9,326,10.0,28.1,clicks,"Both pages average in the top 10. That can be a double listing, which is fine. Check the live results before you change anything."
+repot monstera deliciosa,medium,31,722,1,https://www.example.com/guides/repotting-monstera/,23,409,7.2,74.2,clicks,
+repot monstera deliciosa,medium,31,722,2,https://www.example.com/blog/how-to-repot-a-monstera/,8,313,12.2,25.8,clicks,
+monstera repotting guide,medium,17,553,1,https://www.example.com/guides/repotting-monstera/,14,314,8.5,82.3,clicks,
+monstera repotting guide,medium,17,553,2,https://www.example.com/blog/how-to-repot-a-monstera/,3,239,14.6,17.6,clicks,
+best low light plants,medium,25,617,1,https://www.example.com/collections/low-light-plants/,21,392,5.8,84.0,clicks,"Both pages average in the top 10. That can be a double listing, which is fine. Check the live results before you change anything."
+best low light plants,medium,25,617,2,https://www.example.com/blog/best-low-light-plants/,4,225,8.6,16.0,clicks,"Both pages average in the top 10. That can be a double listing, which is fine. Check the live results before you change anything."
+plants for dark rooms,medium,30,566,1,https://www.example.com/collections/low-light-plants/,24,413,5.3,80.0,clicks,"Both pages average in the top 10. That can be a double listing, which is fine. Check the live results before you change anything."
+plants for dark rooms,medium,30,566,2,https://www.example.com/blog/best-low-light-plants/,6,153,9.0,20.0,clicks,"Both pages average in the top 10. That can be a double listing, which is fine. Check the live results before you change anything."
+snake plant overwatering,low,82,1440,1,https://www.example.com/blog/snake-plant-watering/,74,1066,4.9,90.2,clicks,
+snake plant overwatering,low,82,1440,2,https://www.example.com/blog/snake-plant-care/,8,374,10.2,9.8,clicks,
+terracotta vs plastic pots,low,80,1907,1,https://www.example.com/blog/terracotta-vs-plastic-pots/,73,1597,6.0,91.2,clicks,
+terracotta vs plastic pots,low,80,1907,2,https://www.example.com/collections/terracotta-pots/,7,310,11.1,8.8,clicks,
+calathea curling leaves,low,38,814,1,https://www.example.com/blog/calathea-care/,35,701,5.7,92.1,clicks,
+calathea curling leaves,low,38,814,2,https://www.example.com/blog/why-are-my-plant-leaves-curling/,3,113,12.7,7.9,clicks,
