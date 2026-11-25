@@ -1,0 +1,16 @@
+# your exports and reports stay local
+report/
+reports/
+*.csv
+!examples/sample-export.csv
+!examples/sample-report/*.csv
+
+# secrets
+.env
+.env.*
+
+# python / os
+__pycache__/
+*.pyc
+.venv/
+.DS_Store
